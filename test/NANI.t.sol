@@ -6,7 +6,7 @@ import {Test} from "../lib/forge-std/src/Test.sol";
 
 contract NANITest is Test {
     NANI immutable nani = new NANI();
-    DummyToken immutable dummy = new DummyToken();
+    DummyToken immutable token = new DummyToken();
     address constant DAO = 0xDa000000000000d2885F108500803dfBAaB2f2aA;
 
     function setUp() public payable {
@@ -21,24 +21,31 @@ contract NANITest is Test {
     function testSet() public payable {
         vm.prank(DAO);
         bytes4 selector = bytes4(keccak256("transfer(address,uint256)"));
-        nani.set(selector, address(dummy));
-        assertEq(nani.get(selector), address(dummy));
+        nani.set(selector, address(token));
+        assertEq(nani.get(selector), address(token));
     }
 
     function testExecutor() public payable {
         vm.prank(DAO);
         bytes4 selector = bytes4(keccak256("transfer(address,uint256)"));
-        nani.set(selector, address(dummy));
-        assertEq(nani.get(selector), address(dummy));
+        nani.set(selector, address(token));
+        assertEq(nani.get(selector), address(token));
         vm.prank(DAO);
         bytes4 selector2 = bytes4(keccak256("balanceOf(address)"));
-        nani.set(selector2, address(dummy));
-        assertEq(nani.get(selector2), address(dummy));
-        address(nani).call(abi.encodeCall(DummyToken.transfer, (address(1), 1 ether)));
+        nani.set(selector2, address(token));
+        assertEq(nani.get(selector2), address(token));
+        (bool s,) = address(nani).call(abi.encodeCall(DummyToken.transfer, (address(1), 1 ether)));
+        assert(s);
         (, bytes memory retData) =
             address(nani).staticcall(abi.encodeWithSelector(selector2, (address(1))));
         uint256 balance = abi.decode(retData, (uint256));
         assertEq(1 ether, balance);
+    }
+
+    function testReceive() public payable {
+        assertEq(address(nani).balance, 0);
+        payable(address(nani)).transfer(1 ether);
+        assertEq(address(nani).balance, 1 ether);
     }
 }
 

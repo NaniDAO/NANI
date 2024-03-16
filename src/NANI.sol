@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity 0.8.25;
 
-/// @notice An open-ended DAO smart contract.
 contract NANI {
     address constant DAO = 0xDa000000000000d2885F108500803dfBAaB2f2aA;
 
@@ -20,6 +19,7 @@ contract NANI {
 
     fallback() external payable {
         assembly ("memory-safe") {
+            if iszero(calldatasize()) { return(codesize(), 0x00) } // `receive()`.
             calldatacopy(0x00, 0x00, calldatasize())
             if iszero(
                 delegatecall(

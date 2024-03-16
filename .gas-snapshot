@@ -1,2 +1,3 @@
-Tester:test(string) (runs: 256, μ: 47361, ~: 24565)
-TesterTest:testTest() (gas: 27613)
+NANITest:testCreate() (gas: 122351)
+NANITest:testExecutor() (gas: 81688)
+NANITest:testSet() (gas: 29528)

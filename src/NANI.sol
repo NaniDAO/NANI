@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity 0.8.25;
-å
+
 contract NANI {
     address constant DAO = 0xDa000000000000d2885F108500803dfBAaB2f2aA;
 

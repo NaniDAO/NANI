@@ -4,6 +4,12 @@ NANI dynamic contract. Iterative governance of functions by DAO.
 
 [0x000000000000641b6a7b74f177babdb4417718ef](https://arbiscan.io/address/0x000000000000641b6a7b74f177babdb4417718ef#code)
 
+## Extensions
+
+### Akashic (Read)
+
+[0x000000000000394793B2Fe854281CeE09a98bdBC](https://arbiscan.io/address/0x000000000000394793B2Fe854281CeE09a98bdBC#code)
+
 ## Getting Started
 
 Run: `curl -L https://foundry.paradigm.xyz | bash && source ~/.bashrc && foundryup`

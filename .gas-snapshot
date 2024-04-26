@@ -1,4 +1,4 @@
-NANITest:testCreate() (gas: 123759)
-NANITest:testExecutor() (gas: 81747)
-NANITest:testReceive() (gas: 13170)
-NANITest:testSet() (gas: 29528)
+NANITest:testCreate() (gas: 123737)
+NANITest:testExecutor() (gas: 81814)
+NANITest:testReceive() (gas: 13148)
+NANITest:testSet() (gas: 29506)
